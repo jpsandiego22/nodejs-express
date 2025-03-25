@@ -1,0 +1,24 @@
+curl --location 'localhost:3000/api/v1/auth/token' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Basic anBzYW5kaWVnbzpQQHNzdzByZA==' \
+--data '{
+    "grant_type":"client-credentials"
+}'
+
+
+curl --location 'localhost:3000/api/v1/users/submit' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Impwc2FuZGllZ28iLCJ0b2tlbklkZW50aWZpZXIiOiIxYTI4MDM1Ny0zOTA2LTQzM2UtOWUyMi1kZGY0MzdjYTdkNDMiLCJpYXQiOjE3NDI4OTI4NzIsImV4cCI6MTc0Mjg5NjQ3Mn0.1UoK_EqnUv5EtDYw_p6uBFDg44VRD3YRjTOcSiJnGYU' \
+--data-raw '{
+    
+    "lname":"San Diego",
+    "fname": "Jomer",
+    "mname": "Pulvinar",
+    "suffix": "Jr.",
+    "email":"jomersan0619@gmail.com",
+    "contact_no":"09306805240",
+    "location" : "Rodriguez, Rizal",
+    "status" : "0",
+    "id":1
+}'
+
