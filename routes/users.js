@@ -1,22 +1,29 @@
 const express = require("express")
+const app = express();
+const usedTokens = new Set();
 const router = express.Router()
+const bodyParser = require('body-parser');
+const jsonParser = bodyParser.json();
 
-router.get("/", (req,res) => {
-    res.send("User List")
-})
+// VALIDATION MODULE
+const {usersValidation} = require('../validation/usersValidation')
 
-router.get("/new", (req,res) => {
-    res.send("User New Form")
-})
+// QUERIES TO DB MODULE
+const {getAllData,getDataByID,deleteDatabyID, InsertUser} = require('../queries/usersQueries')
+
+// GET ALL DATA
+router.get("/getalldata",getAllData);
+
+// INSERT & UPDATE MODULE
+router.route("/submit")
+.post(jsonParser, usersValidation, InsertUser)
+.put(jsonParser,deleteDatabyID)
 
 
+// GET SPECIFIC DATA & DELETE
 router.route("/:id")
-.get((req,res) => {
-    res.send(req.params.id)
-})
-.post((req,res) => {
-    res.send(req.params.id)
-})
+.post(jsonParser,getDataByID)
+.delete(jsonParser,deleteDatabyID)
 
 
 
