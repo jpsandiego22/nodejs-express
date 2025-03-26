@@ -6,18 +6,18 @@ const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 
 // VALIDATION MODULE
-const {usersValidation} = require('../validation/usersValidation')
+const {usersUpdateValidation, usersInsertValidation} = require('../validation/usersValidation')
 
 // QUERIES TO DB MODULE
-const {getAllData,getDataByID,deleteDatabyID, InsertUser} = require('../queries/usersQueries')
+const {getAllData, getDataByID, deleteDatabyID, insertUser, updateUser} = require('../queries/usersQueries')
 
 // GET ALL DATA
 router.get("/getalldata",getAllData);
 
 // INSERT & UPDATE MODULE
 router.route("/submit")
-.post(jsonParser, usersValidation, InsertUser)
-.put(jsonParser,deleteDatabyID)
+.post(jsonParser, usersInsertValidation, insertUser)
+.put(jsonParser, usersUpdateValidation, updateUser)
 
 
 // GET SPECIFIC DATA & DELETE
